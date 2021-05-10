@@ -11,7 +11,7 @@ This is a template for developing a OVaaS's backend on your local dev machine. P
 ## Setup Development Environment
 
 ### Install softwares described as prerequisites
-Recommend to install latest version of each software. All softwares should be installed easily with GUI-based install wizard.
+Recommend to install latest version of each software. All softwares can be installed easily with GUI-based install wizard.
 ### Install VSCode Extensions
 - Launch VSCode
 - Go to the Extention pane
