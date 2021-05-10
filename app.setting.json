@@ -1,0 +1,16 @@
+[
+    {
+        "name": "HttpTriggerHumanPose",
+        "models":[
+            {
+                "name": "human-pose-estimation-0001",
+                "is_ir": true,
+                "url": "",
+                "precision": "",
+                "env_name_ip": "HUMANPOSE_IPADDRESS",
+                "env_name_port": "HUMANPOSE_PORT",
+                "openvino_version": "latest"
+            },
+        ]
+    }
+]
