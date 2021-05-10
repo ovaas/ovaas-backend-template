@@ -1,4 +1,5 @@
 # ovaas-backend-template
+This is a template for developing a OVaaS's backend on your local dev machine. Please follow the instrunctions described below and try to have your custom backend application.
 
 ## Prerequisites
 - Windows 10
@@ -6,36 +7,32 @@
 - Docker for Windows
 - Node.js (npm)
 - Azure Storage Explorer
+- [Azure Functions Core Tools (v3.x)](https://docs.microsoft.com/ja-jp/azure/azure-functions/functions-run-local?tabs=windows%2Ccsharp%2Cbash#install-the-azure-functions-core-tools)
 
+*Note: MacOS should be supported but no assessment yet.*
 ## Setup Development Environment
 
 ### Install softwares described as prerequisites
-Recommend to install latest version of each software.
-
-### Install Azure Functions Core Tools
-- Download windows installer [here](https://docs.microsoft.com/ja-jp/azure/azure-functions/functions-run-local?tabs=windows%2Ccsharp%2Cbash#install-the-azure-functions-core-tools) and install it.
-    - v3.x is recommended.
-
+Recommend to install latest version of each software. All softwares can be installed with easy install wizard GUI.
 ### Install VSCode Extensions
 - Launch VSCode
 - Go to the Extention pane
 - Search and install the extentions below
     - Azure Functions
     - REST Client
-
-### Clone this repository
-- Launch command prompt
-- Clone this repository by the command below
+### Clone this repository and open it with VSCode
+- Launch command prompt and change directory as you want.
+- Clone this repository there by the command below
     ```cmd
-    git clone 
+    git clone https://github.com/OVaaS/ovaas-backend-template.git
     ```
-- Launch VSCode by the command below
+- Launch VSCode to load the repository by the command below
     ```cmd
-    cd REPOSITORY_ROOT_DIR
+    cd ovaas-backend-template
     code .
     ```
 ### Create Python venv on VSCode
-It should be created automatically by VSCode when it launchs but you can create it by yourselves using the instructions below if it is not created.
+VSCode shows a dialog to ask you if venv can be automatically created so it will be easy to create it by clicking "Yes" button there. But you can create it by yourselves using the instructions below if it is not shown.
 
 - Launch command prompt in VSCode
 - Create venv by the command below
@@ -43,8 +40,9 @@ It should be created automatically by VSCode when it launchs but you can create 
     ```cmd
     python -m venv .venv
     ```
+After creating the venv, you need to choose a python interpreter to run an application on VSCode.
 - Choose Python interpreter 
-Launch "Command Palette" and type "Python: Select Interpreter", then you can choose a python interpreter in the venv youjust created.
+Open the "Command Palette" from the "View" item on the menu bar and type "Python: Select Interpreter", then you can choose a python interpreter from the list shown there. Recommend to choose the one in the venv you just created.
 
 ### Launch a local Azure Storage as a Docker container
 Now you are ready to launch some docker containers for developping. The first one is a local Azure Storage. Do it following the command below.
@@ -65,11 +63,11 @@ Now you are ready to launch some docker containers for developping. The first on
     ```
 - Check if the model is downloaded in local folder. For example, above "human-pose-estimation-0001" should be here.
     ```cmd
-    REPOSITORY_ROOT_DIR/models/intel/human-pose-estimation-0001/FPXX
+    PARENT_DIR/ovaas-backend-template/models/intel/human-pose-estimation-0001/FPXX
     ```
 - Copy the absolute path to the XML file and the BIN file of the pre-trained model and upload the model to the local Azure Storage by the command below.
     ```cmd
-    python scripts\UploadModelFilesToAzureStorage.py --model_name human-pose-estimation --xml_file_path REPOSITORY_ROOT_DIR/models/intel/human-pose-estimation-0001/FPXX\human-pose-estimation-0001.xml --bin_file_path REPOSITORY_ROOT_DIR/models/intel/human-pose-estimation-0001/FPXX\human-pose-estimation-0001.bin --connection_string "AccountName=devstoreaccount1;AccountKey=Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==;DefaultEndpointsProtocol=http;BlobEndpoint=http://127.0.0.1:10000/devstoreaccount1;"
+    python scripts\UploadModelFilesToAzureStorage.py --model_name human-pose-estimation --xml_file_path PARENT_DIR/ovaas-backend-template/models/intel/human-pose-estimation-0001/FPXX\human-pose-estimation-0001.xml --bin_file_path PARENT_DIR/ovaas-backend-template/models/intel/human-pose-estimation-0001/FPXX\human-pose-estimation-0001.bin --connection_string "AccountName=devstoreaccount1;AccountKey=Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==;DefaultEndpointsProtocol=http;BlobEndpoint=http://127.0.0.1:10000/devstoreaccount1;"
     ```
     Here you need four parameters.
     
@@ -83,8 +81,8 @@ Now you are ready to launch some docker containers for developping. The first on
     ```
     Here you need two parameters.
 
-    - First parameter: The unique model name you just named when to upload the model to the local Azure storage.
-    - Secon Parameter: Your PC's IP address to access the internet. The "localhost" and "127.0.0.1" will not work fine.
+    - 1st parameter: The unique model name you just named when to upload the model to the local Azure storage.
+    - 2nd parameter: The IP address assigned to your PC's ethernet adapter. Note: "localhost" and "127.0.0.1" will not work fine.
 
 ### Launch an Azure functions emulater on VSCode
 - From the "Run" on the menu bar, click "Start Debugging". Then the emulater should start automatically. You will see the logs like below if it starts successfully.
@@ -104,9 +102,10 @@ Now you are ready to launch some docker containers for developping. The first on
     ```
 ### Run the sample application
 - Open the file called "request.http".
-- Click the "Send Request" on the top of the pane, then you can see the inference result on the other pane opened like this.
+- Click the "Send Request" on the top of the pane, then you can see the inference result after a few seconds on the other pane opened like the image below.
 ![Sample Inference Result](img/result.png "sample result")
 
 ## Develop your custom application
 
-### 
+### Create a new Azure Function in the project
+### Have a new application code following sample code
