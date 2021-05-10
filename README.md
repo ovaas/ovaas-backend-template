@@ -2,14 +2,12 @@
 This is a template for developing a OVaaS's backend on your local dev machine. Please follow the instrunctions described below and try to have your custom backend application.
 
 ## Prerequisites
-- Windows 10
+- Windows 10 / Linux / macOS
 - Visual Studio Code
-- Docker for Windows
+- Docker
 - Node.js (npm)
 - Azure Storage Explorer
 - [Azure Functions Core Tools (v3.x)](https://docs.microsoft.com/ja-jp/azure/azure-functions/functions-run-local?tabs=windows%2Ccsharp%2Cbash#install-the-azure-functions-core-tools)
-
-*Note: MacOS should be supported but no assessment yet.*
 ## Setup Development Environment
 
 ### Install softwares described as prerequisites
@@ -53,19 +51,37 @@ After creating the venv, you need to choose a python interpreter to run an appli
 ### Launch a local Azure Storage as a Docker container
 Now you are ready to launch some docker containers for developping. The first one is a local Azure Storage. Do it following the command below.
 - Launch a local Azure storage using the Azurite Docker image
+
+    Windows 10
     ```cmd
     scripts\LaunchAzurite.bat
+    ```
+    Linux / macOS
+    ```bash
+    sh scripts/LaunchAzurite.sh
     ```
     After the command executed, check if local Azure storage is launched by Azure Storage Explorer.
 
 ### Launch a local OpenVINO Model server with a pre-trained model
 - Look at the list of all pre-trained models by the command below.
+
+    Windows 10
     ```cmd
     scripts\GetModelList.bat
     ```
+    Linux / macOS
+    ```bash
+    sh scripts/GetModelList.sh
+    ```
+
 - Choose one model to download and download it by the command below. The name "human-pose-estimation-0001" can be changed as you need.
+    Windows 10
     ```cmd
     scripts\DownloadModel.bat human-pose-estimation-0001
+    ```
+    Linux / macOS
+    ```bash
+    sh scripts/DownloadModel.sh human-pose-estimation-0001
     ```
 - Check if the model is downloaded in local folder. For example, above "human-pose-estimation-0001" should be here.
     ```cmd
@@ -78,9 +94,9 @@ Now you are ready to launch some docker containers for developping. The first on
     python scripts\UploadModelFilesToAzureStorage.py --model_name human-pose-estimation --xml_file_path PARENT_DIR\ovaas-backend-template\models\intel\human-pose-estimation-0001\FPXX\human-pose-estimation-0001.xml --bin_file_path PARENT_DIR\ovaas-backend-template\models\intel\human-pose-estimation-0001\FPXX\human-pose-estimation-0001.bin
     ```
 
-    macOS
+    Linux / macOS
     ```cmd
-    python scripts/UploadModelFilesToAzureStorage.py --model_name human-pose-estimation --xml_file_path PARENT_DIR/ovaas-backend-template/models/intel/human-pose-estimation-0001/FPXX/human-pose-estimation-0001.xml --bin_file_path PARENT_DIR/ovaas-backend-template/models/intel/human-pose-estimation-0001/FPXX/human-pose-estimation-0001.bin
+    python3 scripts/UploadModelFilesToAzureStorage.py --model_name human-pose-estimation --xml_file_path PARENT_DIR/ovaas-backend-template/models/intel/human-pose-estimation-0001/FPXX/human-pose-estimation-0001.xml --bin_file_path PARENT_DIR/ovaas-backend-template/models/intel/human-pose-estimation-0001/FPXX/human-pose-estimation-0001.bin
     ```
     Here you need four parameters.
     
@@ -90,8 +106,14 @@ Now you are ready to launch some docker containers for developping. The first on
     - --connection_string: Optional. The connection string to access the local Azure Storage. You can get this on Azure Storage explorer but probably don't need to specify it. You can edit source code if any other connection string is needed.
 
 - Launch a local OpenVINO model server
+
+    Windows 10
     ```cmd
     scripts\LaunchOVMS.bat human-pose-estimation 192.168.10.107
+    ```
+    Linux / macOS
+    ```cmd
+    sh scripts/LaunchOVMS.sh human-pose-estimation 192.168.10.107
     ```
     Here you need two parameters.
 
