@@ -41,8 +41,14 @@ VSCode shows a dialog to ask you if venv can be automatically created so it will
     python -m venv .venv
     ```
 After creating the venv, you need to choose a python interpreter to run an application on VSCode.
-- Choose Python interpreter 
-Open the "Command Palette" from the "View" item on the menu bar and type "Python: Select Interpreter", then you can choose a python interpreter from the list shown there. Recommend to choose the one in the venv you just created.
+- Choose Python interpreter
+
+    Open the "Command Palette" from the "View" item on the menu bar and type "Python: Select Interpreter", then you can choose a python interpreter from the list shown there. Recommend to choose the one in the venv you just created.
+- Install required libraries
+    ```cmd
+    python -m pip install --upgrade pip
+    pip install -r requirements.txt
+    ```
 
 ### Launch a local Azure Storage as a Docker container
 Now you are ready to launch some docker containers for developping. The first one is a local Azure Storage. Do it following the command below.
@@ -66,15 +72,23 @@ Now you are ready to launch some docker containers for developping. The first on
     PARENT_DIR/ovaas-backend-template/models/intel/human-pose-estimation-0001/FPXX
     ```
 - Copy the absolute path to the XML file and the BIN file of the pre-trained model and upload the model to the local Azure Storage by the command below.
+
+    Windows
     ```cmd
-    python scripts\UploadModelFilesToAzureStorage.py --model_name human-pose-estimation --xml_file_path PARENT_DIR/ovaas-backend-template/models/intel/human-pose-estimation-0001/FPXX\human-pose-estimation-0001.xml --bin_file_path PARENT_DIR/ovaas-backend-template/models/intel/human-pose-estimation-0001/FPXX\human-pose-estimation-0001.bin --connection_string "AccountName=devstoreaccount1;AccountKey=Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==;DefaultEndpointsProtocol=http;BlobEndpoint=http://127.0.0.1:10000/devstoreaccount1;"
+    python scripts\UploadModelFilesToAzureStorage.py --model_name human-pose-estimation --xml_file_path PARENT_DIR\ovaas-backend-template\models\intel\human-pose-estimation-0001\FPXX\human-pose-estimation-0001.xml --bin_file_path PARENT_DIR\ovaas-backend-template\models\intel\human-pose-estimation-0001\FPXX\human-pose-estimation-0001.bin
+    ```
+
+    macOS
+    ```cmd
+    python scripts/UploadModelFilesToAzureStorage.py --model_name human-pose-estimation --xml_file_path PARENT_DIR/ovaas-backend-template/models/intel/human-pose-estimation-0001/FPXX/human-pose-estimation-0001.xml --bin_file_path PARENT_DIR/ovaas-backend-template/models/intel/human-pose-estimation-0001/FPXX/human-pose-estimation-0001.bin
     ```
     Here you need four parameters.
     
     - --model_name: The unique model name
     - --xml_file_path: The absolute path to the XML file of the pre-trained model
     - --bin_file_path: The absolute path to the BIN file of the pre-trained model
-    - --connection_string: The connection string to access the local Azure Storage. You can get this on Azure Storage explorer but probably above sample string will also work fine for your environment.
+    - --connection_string: Optional. The connection string to access the local Azure Storage. You can get this on Azure Storage explorer but probably don't need to specify it. You can edit source code if any other connection string is needed.
+
 - Launch a local OpenVINO model server
     ```cmd
     scripts\LaunchOVMS.bat human-pose-estimation 192.168.10.107

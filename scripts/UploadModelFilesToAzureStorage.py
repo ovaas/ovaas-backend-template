@@ -10,7 +10,7 @@ try:
     parser.add_argument('--model_name', required=True, type=str, help='The unique name of the model')
     parser.add_argument('--xml_file_path', required=True, type=str, help='The path of xml file')
     parser.add_argument('--bin_file_path', required=True, type=str, help='The path of bin file')
-    parser.add_argument('--connection_string', required=True, type=str, help='The connection string to access Azure BLOB storage')
+    parser.add_argument('--connection_string', required=False, type=str, help='The connection string to access Azure BLOB storage', default="AccountName=devstoreaccount1;AccountKey=Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw==;DefaultEndpointsProtocol=http;BlobEndpoint=http://127.0.0.1:10000/devstoreaccount1;")
 
     args = parser.parse_args()
 
