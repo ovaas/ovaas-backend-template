@@ -1,4 +1,4 @@
-# ovaas-backend-template
+# OVaaS Backend Development Template
 This is a template for developing a OVaaS's backend on your local dev machine. Please follow the instrunctions described below and try to have your custom backend application.
 
 ## Prerequisites
