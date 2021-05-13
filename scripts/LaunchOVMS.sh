@@ -7,7 +7,7 @@ if [ ! -d $dir ]; then
     mkdir $dir
 fi
 
-PORT_NUMBER=9000
+PORT_NUMBER=$3
 MODEL_SERVER_VERSION="latest"
 MODEL_NAME=$1
 MODEL_PATH="az://ovms/$MODEL_NAME"

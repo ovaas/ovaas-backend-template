@@ -1,14 +1,15 @@
 # OVaaS Backend Development Template
 This is a template for developing a OVaaS's backend on your local dev machine. Please follow the instrunctions described below and try to have your custom backend application.
 
-## Prerequisites
+## 0. Prerequisites
 - Windows 10 / Linux / macOS
+- Python 3.7+
 - Visual Studio Code
 - Docker
 - Node.js (npm)
 - Azure Storage Explorer
 - [Azure Functions Core Tools (v3.x)](https://docs.microsoft.com/ja-jp/azure/azure-functions/functions-run-local?tabs=windows%2Ccsharp%2Cbash#install-the-azure-functions-core-tools)
-## Setup Development Environment
+## 1. Setup Development Environment
 
 ### Install softwares described as prerequisites
 Recommend to install latest version of each software. All softwares can be installed easily with GUI-based install wizard.
@@ -62,6 +63,8 @@ Now you are ready to launch some docker containers for developping. The first on
     ```
     After the command executed, check if local Azure storage is launched by Azure Storage Explorer.
 
+Now you are ready for running a sample application. Follow the next step.
+## 2. Run the Human-Pose-Estimation sample
 ### Launch a local OpenVINO Model server with a pre-trained model
 - Look at the list of all pre-trained models by the command below.
 
@@ -109,16 +112,26 @@ Now you are ready to launch some docker containers for developping. The first on
 
     Windows 10
     ```cmd
-    scripts\LaunchOVMS.bat human-pose-estimation 192.168.10.107
+    scripts\LaunchOVMS.bat 1st-parameter 2nd-parameter 3rd-parameter
+    ```
+    For example..
+    ```cmd
+    scripts\LaunchOVMS.sh human-pose-estimation 192.168.10.107 9000
     ```
     Linux / macOS
     ```cmd
-    sh scripts/LaunchOVMS.sh human-pose-estimation 192.168.10.107
+    sh scripts/LaunchOVMS.sh 1st-parameter 2nd-parameter 3rd-parameter
     ```
-    Here you need two parameters.
+    For example..
+    ```cmd
+    #Example
+    sh scripts/LaunchOVMS.sh human-pose-estimation 192.168.10.107 9000
+    ```
+    Here you need three parameters.
 
-    - 1st parameter: The unique model name you just named when to upload the model to the local Azure storage.
-    - 2nd parameter: The IP address assigned to your PC's ethernet adapter. Note: "localhost" and "127.0.0.1" will not work fine.
+    - 1st-parameter: The unique model name you just named when to upload the model to the local Azure storage.
+    - 2nd-parameter: The IP address assigned to your PC's ethernet adapter. Note: "localhost" and "127.0.0.1" will not work fine.
+    - 3rd-parameter: The port number to communicate to a model server.
 
 ### Launch an Azure functions emulater on VSCode
 - From the "Run" on the menu bar, click "Start Debugging". Then the emulater should start automatically. You will see the logs like below if it starts successfully.
@@ -141,7 +154,17 @@ Now you are ready to launch some docker containers for developping. The first on
 - Click the "Send Request" on the top of the pane, then you can see the inference result after a few seconds on the other pane opened like the image below.
 ![Sample Inference Result](img/result.png "sample result")
 
-## Develop your custom application
+## 3. Develop your custom application
+
+### Follow the Step 2 to launch a new OpenVINO model server
+You need to launch a new OpenVINO model server with your desired pre-trained model. To do that, follow the step 2 again and have a model server started. Note that you need to use different port number from the one used on human-pose-estiimation model server.
 
 ### Create a new Azure Function in the project
-### Have a new application code following sample code
+- Click the Azure button on the bar on the left of VSCode
+- Click the "Create Function" button, then you need to input information below.
+    1. Choose "HTTP trigger"
+    2. Type an unique function name
+    3. Choose "Anounymous" as Authorization Level
+- Then you will have a new function template in the same project. 
+### Write a new application code following sample code
+Basically you can imitate the sample human-pose-estimation's __init__.py.

@@ -6,7 +6,7 @@ SET dir=%CD%\ovms
 rem ディレクトリが存在するかチェックする
 If not exist %dir% mkdir %dir%
 
-SET PORT_NUMBER=9000
+SET PORT_NUMBER=%3
 SET MODEL_SERVER_VERSION="latest"
 SET MODEL_NAME=%1
 SET MODEL_PATH="az://ovms/%MODEL_NAME%"
