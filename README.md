@@ -113,17 +113,14 @@ Now you are ready for running a sample application. Follow the next step.
     Windows 10
     ```cmd
     scripts\LaunchOVMS.bat 1st-parameter 2nd-parameter 3rd-parameter
-    ```
-    For example..
-    ```cmd
+
+    #Example
     scripts\LaunchOVMS.sh human-pose-estimation 192.168.10.107 9000
     ```
     Linux / macOS
     ```cmd
     sh scripts/LaunchOVMS.sh 1st-parameter 2nd-parameter 3rd-parameter
-    ```
-    For example..
-    ```cmd
+
     #Example
     sh scripts/LaunchOVMS.sh human-pose-estimation 192.168.10.107 9000
     ```
