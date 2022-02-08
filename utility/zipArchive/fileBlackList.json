@@ -1,0 +1,12 @@
+{
+    "filePath": "C:",
+    "folder": [],
+    "file": [
+        "fileBlackList.json",
+        "fileMap.json",
+        "archiveFileScan.py",
+        "zipArchive.py",
+        "zipArchive_2.py",
+        "zipData.zip"
+    ]
+}
